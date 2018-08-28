@@ -7,7 +7,7 @@ data class DockerRepositoryName(
         val firstComponent: PathComponent,
         val moreComponents: List<PathComponent> = emptyList()) : ICanonicalStringRepresentable {
 
-    constructor(repr: String): this(
+    constructor(repr: String) : this(
             PathComponent(repr.split(SLASH).first()),
             repr.split(SLASH).drop(1).map(::PathComponent)
     )
@@ -23,10 +23,14 @@ data class DockerRepositoryName(
         }
     }
 
-    override val repr = (listOf(firstComponent) + moreComponents).joinToString(separator = SLASH) {it.repr}
+    override val repr: String
+        get() {
+
+            return (listOf(firstComponent) + moreComponents).joinToString(separator = SLASH) { it.repr }
+        }
 
 
-    data class PathComponent(override val repr: String) : ICanonicalStringRepresentable  {
+    data class PathComponent(override val repr: String) : ICanonicalStringRepresentable {
 
 
         init {
@@ -35,6 +39,7 @@ data class DockerRepositoryName(
                 "String '$repr' is not a valid Path Component for a Docker Registry"
             }
         }
+
         companion object {
 
             private val regex = Regex("[a-z0-9]+(?:[._-][a-z0-9]+)*")
