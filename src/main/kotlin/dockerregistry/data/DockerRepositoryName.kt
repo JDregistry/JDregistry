@@ -1,6 +1,6 @@
-package dockerregistryclient.data
+package dockerregistry.data
 
-import dockerregistryclient.ICanonicalStringRepresentable
+import dockerregistry.ICanonicalStringRepresentable
 
 
 data class DockerRepositoryName(

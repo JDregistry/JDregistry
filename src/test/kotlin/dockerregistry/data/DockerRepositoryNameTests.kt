@@ -1,16 +1,14 @@
-package dockerregistryclient.data
+package dockerregistry.data
 
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
+import org.junit.Assert
+import org.junit.Test
+
 
 class DockerRepositoryNameTests {
 
-    private fun assertIllegalArgument(f: () -> Unit) {
 
-        Assertions.assertThrows(IllegalArgumentException::class.java, f)
-    }
-
-    @Test fun test_constructor_valid_path_components() {
+    @Test
+    fun test_constructor_valid_path_components() {
 
         DockerRepositoryName.PathComponent("alpine")
         DockerRepositoryName.PathComponent("nginx")
@@ -19,13 +17,23 @@ class DockerRepositoryNameTests {
     }
 
 
-    @Test fun test_constructor_invalid_path_components() {
+    @Test(expected = IllegalArgumentException::class)
+    fun test_constructor_invalid_path_components1() {
 
-        assertIllegalArgument { DockerRepositoryName.PathComponent("") }
-        assertIllegalArgument { DockerRepositoryName.PathComponent("_") }
-        assertIllegalArgument { DockerRepositoryName.PathComponent("foo/bar") }
+        DockerRepositoryName.PathComponent("")
     }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun test_constructor_invalid_path_components2() {
+
+        DockerRepositoryName.PathComponent("_")
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun test_constructor_invalid_path_components3() {
+
+        DockerRepositoryName.PathComponent("foo/bar")
+    }
 
     @Test fun test_constructors_are_equivalent() {
 
@@ -39,7 +47,7 @@ class DockerRepositoryNameTests {
 
         ).forEach {
 
-            Assertions.assertEquals(
+            Assert.assertEquals(
                     DockerRepositoryName(it.key),
                     DockerRepositoryName(it.value.first, it.value.second)
             )

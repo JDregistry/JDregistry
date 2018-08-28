@@ -1,4 +1,4 @@
-package dockerregistryclient
+package dockerregistry
 
 internal interface ICanonicalStringRepresentable {
 
