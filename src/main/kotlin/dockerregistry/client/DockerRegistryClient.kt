@@ -17,6 +17,12 @@ class DockerRegistryClient(
 
     private val v2Endpoint = uri.resolve("/v2/")
 
+    private val catalog = v2Endpoint.resolve("_catalog")
+
 
     fun implementsV2RegistryAPI() = client.get(v2Endpoint).statusCode == 200
+
+
+    fun
+
 }
