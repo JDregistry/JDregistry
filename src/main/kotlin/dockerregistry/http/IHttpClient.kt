@@ -10,7 +10,7 @@ import java.net.URI
  * @since 0.0.1
  *
  */
-interface IHttpClient {
+interface IHttpGetClient {
 
     /**
      * Performs HTTP GET on the provided [URI].
@@ -18,5 +18,5 @@ interface IHttpClient {
      * @param uri The [URI] to which HTTP GET should be sent to.
      * @return [IHttpResponse] object reflecting the result of the request
      */
-    fun get(uri: URI): IHttpResponse
+    fun get(uri: URI, authorization: String? = null): IHttpResponse
 }

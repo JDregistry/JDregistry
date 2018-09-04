@@ -6,15 +6,15 @@ import java.net.URI
 
 
 /**
- * Test class for implementing [IHttpClient].
+ * Test class for implementing [IHttpGetClient].
  *
  * @author Lukas Zimmermann
  * @since 0.0.1
  *
  */
-class TestHttpClient : IHttpClient {
+class TestHttpClient : IHttpGetClient {
 
     private val client = HttpClientBuilder.create().build()
 
-    override fun get(uri: URI): IHttpResponse = TestHttpResponse(client.execute(HttpGet(uri)))
+    override fun get(uri: URI, authorization: String?): IHttpResponse = TestHttpResponse(client.execute(HttpGet(uri)))
 }

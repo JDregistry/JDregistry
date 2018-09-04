@@ -1,7 +1,6 @@
 package dockerregistry
 
 import org.testcontainers.containers.GenericContainer
-import java.net.URI
 
 
 /**
@@ -19,14 +18,5 @@ class SingleExposedPortContainer(imageName: String, private val originalPort : I
         this.withExposedPorts(originalPort)
     }
 
-    private val mappedPort : Int by lazy { this.getMappedPort(this.originalPort) }
-
-    fun getExternalURI() : URI {
-
-        if (":" in this.containerIpAddress) {
-
-            throw IllegalStateException("For some reason, the IP address of the container contains the ':' character!")
-        }
-        return URI.create("http://" + this.containerIpAddress + ":" + this.mappedPort)
-    }
+    val mappedPort : Int by lazy { this.getMappedPort(this.originalPort) }
 }

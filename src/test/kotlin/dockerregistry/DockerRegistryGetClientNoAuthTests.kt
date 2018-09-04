@@ -1,13 +1,12 @@
-package dockerregistry.client
+package dockerregistry
 
-import dockerregistry.SingleExposedPortContainer
 import dockerregistry.http.TestHttpClient
 import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.ClassRule
 import org.junit.Test
 
-class DockerRegistryClientTests {
+class DockerRegistryGetClientNoAuthTests {
 
 
     companion object {
@@ -17,20 +16,26 @@ class DockerRegistryClientTests {
         @JvmField
         val REGISTRY = SingleExposedPortContainer("lukaszimmermann/test-registry:2.6.2", 5000)
 
-        lateinit var client: DockerRegistryClient
-
+      lateinit var client: DockerRegistryGetClient
 
         @BeforeClass @JvmStatic fun beforeClass() {
 
-            client = DockerRegistryClient(
-                    REGISTRY.getExternalURI(),
-                    TestHttpClient()
-            )
+            client = DockerRegistryGetClient.of(REGISTRY.containerIpAddress, REGISTRY.mappedPort, TestHttpClient())
         }
     }
 
     @Test fun valid_v2_api() {
 
         Assert.assertTrue(client.implementsV2RegistryAPI())
+    }
+
+
+    @Test fun list_repos_1() {
+
+        val repos = client.listRepositories()
+        Assert.assertTrue("testrepo0" in repos)
+        Assert.assertTrue("testrepo1" in repos)
+        Assert.assertTrue("testrepo2" in repos)
+        Assert.assertTrue(repos.size > 2)
     }
 }
