@@ -1,6 +1,6 @@
 {
     "package": {
-        "name": "JDregistry",
+        "name": "client",
         "repo": "jdregistry",
         "subject": "lukaszimmermann",
         "labels": ["kotlin", "bintray", "gradle", "docker", "registry", "client"],
