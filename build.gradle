@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.61'
 }
 
-group 'dockerregistry'
+group 'jdregistry'
 version '0.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -19,6 +19,9 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+apply plugin: 'maven-publish'
+
+
 dependencies {
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
@@ -26,3 +29,27 @@ dependencies {
     testCompile group: 'org.testcontainers', name: 'testcontainers', version: '1.8.3'
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
 }
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom.withXml {
+                asNode().dependencies.'*'.findAll() {
+                    it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
+                        dep.name == it.artifactId.text()
+                    }
+                }.each() {
+                    it.scope*.value = 'compile'
+                }
+            }
+        }
+    }
+}
+
+model {
+    tasks.generatePomFileForMavenPublication {
+        destination = file("$buildDir/libs/jdregistry-0.1-SNAPSHOT.pom")
+    }
+}
+

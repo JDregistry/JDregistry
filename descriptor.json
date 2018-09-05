@@ -1,0 +1,21 @@
+{
+    "package": {
+        "name": "JDregistry",
+        "repo": "jdregistry",
+        "subject": "lukaszimmermann",
+        "labels": ["kotlin", "bintray", "gradle"],
+        "vcs_url": "https://github.com/lukaszimmermann/JDregistry",
+        "licenses": ["MIT"]
+    },
+
+    "version": {
+        "name": "0.1-SNAPSHOT",
+        "gpgSign": false
+    },
+
+    "files":
+    [
+        {"includePattern": "build/libs/(.*)", "uploadPattern": "jdregistry/0.1-SNAPSHOT/$1"}
+    ],
+    "publish": true
+}

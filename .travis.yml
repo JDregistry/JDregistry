@@ -1,9 +1,16 @@
 sudo: required
-
 language: java
-
 services:
 - docker
-
 before_install:
 - gradle clean
+before_deploy:
+- gradle generatePomFileForMavenPublication
+deploy:
+  provider: bintray
+  file: "descriptor.json"
+  user: lukaszimmermann
+  dry-run: false
+  key:
+    secure: OgXpcXpdDC4rkkJKj5BYbYoCgBOcFjSZWvQ8ygjpG+wKOjFfFsx5TCmiXbvRHn5aYttS7o3ArXCk0iMKxrpQHaitk+v9V/IImEg1q6DEbdogOUFuBZTT/ihQ5r4COTNV9fmSTJAzmvcX1JcsRzJq/kZSJHo6DzPGm79jH/mBfD1zKszDBgQRfxmvjP18LN5DWI8swpLXn/uqHujqsbEBJjvwrROkFsGZhs5w7O3t+RU+j4jfY2J1ShoywTp1TZvIUU7bkhebQD24W8WA56zrufWOCBqDMK4bHpD3z2kb3XycV4WShloH6oojeVbfxC0AGBGzRogvMozyN8d96VINKcXUNdG0N5/COJqnFRxUUhblWGExClz1t9B3kxONEL39DBqr8nqa1rnHiKFLhY6uSf5FPw2/Ud9ugQFudbEOiQ9J7sOECy3A2HWGbMtcDqHTfNTIQxPwJq+W217N/zSVScs8DXdc1WpA9fiQzNjB6naAU2hQU/Go0V8MQyaoDXyPZCFPgWfzLwOvQLt6grs3J/epSIHtrNhlg+S+L25KK0W09u1MgJXsyuZEaEPUYqgG87Nm+di5DzyYlaskV+Uw8cDVJ5KjaCzKY/GgCszlnXM6MaRLByQ+6xFXa6esdZwTpx6t3jc6APoEzww7PhAEkaKJXPSKgWkizvArI2BuJ0I=
+  skip_cleanup: true
