@@ -18,6 +18,6 @@ import dockerregistry.payload.serialize.DockerRegistryRepositoriesSerializer
 @JsonDeserialize(using = DockerRegistryRepositoriesDeserializer::class)
 data class DockerRegistryRepositories(
 
-       @JsonProperty("repositories") val repositories : List<String>
+       @JsonProperty("repositories") val repositories : List<String> // Never observed to be null for the tested registries
 
 ) : List<String> by repositories

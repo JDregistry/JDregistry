@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @since 0.1
  *
  */
-data class BearerToken(
+internal data class BearerToken(
 
         @JsonProperty("token") val token: String,
         @JsonProperty("expires_in") val expires_in: Int,
