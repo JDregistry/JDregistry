@@ -3,6 +3,13 @@ package jdregistry
 import jdregistry.internal.auth.BasicAuth
 import java.nio.charset.Charset
 
+/**
+ * Interface for specifying authentication methods
+ *
+ * @author Lukas Zimmermann
+ * @since 0.1
+ *
+ */
 interface Authenticate {
 
     fun authorization(charset: Charset = Charsets.UTF_8) : String

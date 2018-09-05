@@ -7,7 +7,7 @@ import java.net.URI
  * Interface for a HTTP client that only support the HTTP GET method on the provided URI.
  *
  * @author Lukas Zimmermann
- * @since 0.0.1
+ * @since 0.1
  *
  */
 interface IHttpGetClient {

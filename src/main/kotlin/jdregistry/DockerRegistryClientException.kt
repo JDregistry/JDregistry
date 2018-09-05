@@ -6,7 +6,7 @@ import java.net.URI
  *  Exception related to any unspecified error with the Docker Registry
  *
  *  @author Lukas Zimmermann
- *  @sincd 0.1
+ *  @since 0.1
  */
 data class DockerRegistryClientException(
         override val message: String,

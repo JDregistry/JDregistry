@@ -1,5 +1,13 @@
 package jdregistry.internal.host
 
+
+/**
+ * Represents a remote [Host] via an IP4 Address
+ *
+ * @author Lukas Zimmermann
+ * @since 0.1
+ *
+ */
 internal data class IP4Address(
 
         override val repr: String

@@ -10,6 +10,13 @@ import jdregistry.payload.DockerRegistryRepositories
 import java.io.IOException
 
 
+/**
+ * The Deserializer for [DockerRegistryRepositories]
+ *
+ * @author Lukas Zimmermann
+ * @since 0.1
+ *
+ */
 class DockerRegistryRepositoriesDeserializer
 @JvmOverloads constructor(clazz: Class<DockerRegistryRepositories>? = null) : StdDeserializer<DockerRegistryRepositories>(clazz) {
 

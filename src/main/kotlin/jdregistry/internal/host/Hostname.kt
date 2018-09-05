@@ -1,5 +1,13 @@
 package jdregistry.internal.host
 
+
+/**
+ * Represents a remote host via a Hostname
+ *
+ * @author Lukas Zimmermann
+ * @since 0.1
+ *
+ */
 internal data class Hostname(
 
         override val repr: String

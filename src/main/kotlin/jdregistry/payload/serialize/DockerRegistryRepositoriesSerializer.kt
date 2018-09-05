@@ -6,6 +6,13 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer
 import jdregistry.payload.DockerRegistryRepositories
 
 
+/**
+ * The Serializer for [DockerRegistryRepositories]
+ *
+ * @author Lukas Zimmermann
+ * @since 0.1
+ *
+ */
 class DockerRegistryRepositoriesSerializer
 @JvmOverloads constructor(clazz: Class<DockerRegistryRepositories>? = null): StdSerializer<DockerRegistryRepositories>(clazz) {
 
