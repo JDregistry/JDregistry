@@ -10,6 +10,7 @@
 
     "version": {
         "name": "0.1",
+        "released": "2018-09-05",
         "gpgSign": false
     },
 
