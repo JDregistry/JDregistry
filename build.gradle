@@ -1,9 +1,9 @@
-group 'jdregistry'
-version '0.1'
-
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.61'
 }
+
+group 'jdregistry'
+version '0.1'
 
 sourceCompatibility = 1.8
 
