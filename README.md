@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lukaszimmermann/docker-registry-client.svg?branch=master)](https://travis-ci.org/lukaszimmermann/docker-registry-client)
+[![Build Status](https://travis-ci.org/lukaszimmermann/JDregistry.svg?branch=master)](https://travis-ci.org/lukaszimmermann/JDregistry)
 
 # docker-registry-client
 A Docker Registry V2 client written in Kotlin
