@@ -112,9 +112,8 @@ internal class DefaultGetClient(
 
             readGetResponse(this.catalog)
 
-    override fun listTags(repository: String): DockerRegistryTags = TODO()
-//
-//            readGetResponse(this.uri.resolve("/v2/$repository/tags/list"))
+    override fun listTags(repository: String): DockerRegistryTags =
+            readGetResponse(this.catalog.resolve("/v2/$repository/tags/list"))
 
     override fun implementsV2RegistryAPI() = client.get(endpointV2).statusCode == 200
 
