@@ -34,7 +34,7 @@ publishing {
         maven(MavenPublication) {
             from components.java
             groupId 'jdregistry'
-            artifactId 'jdregistry'
+            artifactId 'client'
             version '0.1'
             pom.withXml {
                 asNode().dependencies.'*'.findAll() {
