@@ -35,7 +35,7 @@ publishing {
             from components.java
             groupId 'jdregistry'
             artifactId 'client'
-            version '0.1'
+            version '0.0.1'
             pom.withXml {
                 asNode().dependencies.'*'.findAll() {
                     it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
@@ -51,6 +51,6 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/jdregistry-0.1.pom")
+        destination = file("$buildDir/libs/jdregistry-0.0.1.pom")
     }
 }

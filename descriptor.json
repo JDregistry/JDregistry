@@ -9,14 +9,14 @@
     },
 
     "version": {
-        "name": "0.1",
+        "name": "0.0.1",
         "released": "2018-09-05",
         "gpgSign": false
     },
 
     "files":
     [
-        {"includePattern": "build/libs/(.*)", "uploadPattern": "jdregistry/client/0.1/$1"}
+        {"includePattern": "build/libs/(.*)", "uploadPattern": "jdregistry/client/0.0.1/$1"}
     ],
     "publish": true
 }
