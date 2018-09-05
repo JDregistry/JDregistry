@@ -33,6 +33,9 @@ publishing {
     publications {
         maven(MavenPublication) {
             from components.java
+            groupId 'jdregistry'
+            artifactId 'jdregistry'
+            version '0.1'
             pom.withXml {
                 asNode().dependencies.'*'.findAll() {
                     it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
@@ -51,4 +54,3 @@ model {
         destination = file("$buildDir/libs/jdregistry-0.1.pom")
     }
 }
-
