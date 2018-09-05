@@ -49,7 +49,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/jdregistry-0.1-SNAPSHOT.pom")
+        destination = file("$buildDir/libs/jdregistry-0.1.pom")
     }
 }
 
