@@ -33,8 +33,6 @@ publishing {
     publications {
         maven(MavenPublication) {
             from components.java
-            groupId 'jdregistry'
-            artifactId 'client'
             version '0.0.1'
             pom.withXml {
                 asNode().dependencies.'*'.findAll() {
@@ -59,7 +57,6 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
-
 
 artifacts {
     archives sourcesJar
