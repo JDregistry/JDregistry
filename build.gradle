@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'jdregistry'
-version '0.0.1'
+version '0.0.2'
 
 sourceCompatibility = 1.8
 
@@ -44,7 +44,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             from components.java
-            version '0.0.1'
+            version '0.0.2'
             pom.withXml {
                 asNode().dependencies.'*'.findAll() {
                     it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
@@ -60,7 +60,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/client-0.0.1.pom")
+        destination = file("$buildDir/libs/client-0.0.2.pom")
     }
 }
 
