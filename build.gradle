@@ -34,7 +34,7 @@ apply plugin: 'jacoco'
 dependencies {
     ktlint "com.github.shyiko:ktlint:0.28.0"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.61"
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
     testCompile group: 'org.testcontainers', name: 'testcontainers', version: '1.8.3'
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
