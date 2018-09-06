@@ -5,6 +5,7 @@ import jdregistry.internal.client.DefaultGetClient
 import jdregistry.internal.host.Host
 import jdregistry.payload.DockerRegistryRepositories
 import jdregistry.payload.DockerRegistryTags
+import java.net.URI
 
 
 /**
@@ -18,6 +19,11 @@ import jdregistry.payload.DockerRegistryTags
  *
  */
 interface DockerRegistryGetClient {
+
+    /**
+     * The URI that the Docker Registry is going to be accessed
+     */
+    val uri: URI
 
     /**
      *  Lists all the available repositories in the Docker Registry.

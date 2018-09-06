@@ -32,8 +32,10 @@ internal class DefaultGetClient(
 
     private val mapper = jacksonObjectMapper()
 
+    override val uri: URI = URI.create("http://${host.repr}:$port")
+
     // Generates the V2 endpoint from Host and Port parameters
-    private val endpointV2 = URI.create("http://${host.repr}:$port/v2/")
+    private val endpointV2 = uri.resolve("/v2/")
 
     // Catalog URI
     private val catalog = endpointV2.resolve("/v2/_catalog")

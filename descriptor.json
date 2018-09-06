@@ -16,7 +16,11 @@
 
     "files":
     [
-        {"includePattern": "build/libs/(.*)", "uploadPattern": "jdregistry/client/0.0.1/$1"}
+        {
+          "includePattern": "build/libs/(.*)",
+          "uploadPattern": "jdregistry/client/0.0.1/$1",
+          "matrixParams": { "override": 1 }
+        }
     ],
     "publish": true
 }
