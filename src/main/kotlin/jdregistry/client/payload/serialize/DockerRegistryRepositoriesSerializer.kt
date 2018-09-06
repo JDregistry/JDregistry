@@ -10,7 +10,7 @@ import jdregistry.client.payload.DockerRegistryRepositories
  * The Serializer for [DockerRegistryRepositories]
  *
  * @author Lukas Zimmermann
- * @since 0.1
+ * @since 0.0.1
  *
  */
 class DockerRegistryRepositoriesSerializer

@@ -11,7 +11,7 @@ import jdregistry.client.payload.serialize.DockerRegistryRepositoriesSerializer
  * Represents the response from the Docker Registry when requesting contained repositories.
  *
  * @author Lukas Zimmermann
- * @since 0.1
+ * @since 0.0.1
  *
  */
 @JsonSerialize(using = DockerRegistryRepositoriesSerializer::class)

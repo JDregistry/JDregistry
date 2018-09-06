@@ -14,7 +14,7 @@ import java.io.IOException
  * The Deserializer for [DockerRegistryRepositories]
  *
  * @author Lukas Zimmermann
- * @since 0.1
+ * @since 0.0.1
  *
  */
 class DockerRegistryRepositoriesDeserializer

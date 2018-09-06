@@ -21,7 +21,7 @@ import java.net.URI
  * Implementation of the Docker Registry Client Interface for V2 Docker Registry.
  *
  * @author Lukas Zimmermann
- * @since 0.1
+ * @since 0.0.1
  *
  */
 internal class DefaultGetClient(

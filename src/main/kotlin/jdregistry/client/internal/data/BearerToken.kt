@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * The Bearer token issued by a Docker Registry Authenticate service.
  *
  * @author Lukas Zimmermann
- * @since 0.1
+ * @since 0.0.1
  *
  */
 internal data class BearerToken(

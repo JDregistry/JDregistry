@@ -6,7 +6,7 @@ import java.net.URI
  * Constructs new [URI] by either replacing or appending more query parameters
  *
  * @author Lukas Zimmermann
- * @since 0.1
+ * @since 0.0.1
  *
  */
 internal fun URI.withQuery(params: Map<String, String>, keepOld: Boolean): URI {

@@ -5,7 +5,7 @@ package jdregistry.client.http
  * Represents the response of a Http Request.
  *
  * @author Lukas Zimmermann
- * @since 0.1
+ * @since 0.0.1
  *
  */
 interface IHttpResponse {

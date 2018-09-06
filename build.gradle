@@ -36,8 +36,6 @@ dependencies {
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
 }
 
-
-
 publishing {
     publications {
         maven(MavenPublication) {

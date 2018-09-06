@@ -4,7 +4,7 @@ package jdregistry.client.internal.host
  * Interface for representing identifiers of remote hosts
  *
  * @author Lukas Zimmermann
- * @since 0.1
+ * @since 0.0.1
  *
  */
 internal interface Host {

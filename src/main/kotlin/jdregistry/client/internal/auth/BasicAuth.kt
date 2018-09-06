@@ -8,7 +8,7 @@ import java.util.*
  * Information needed for performing Http Basic Authenticate
  *
  * @author Lukas Zimmermann
- * @since 0.1
+ * @since 0.0.1
  *
  */
 internal data class BasicAuth(
