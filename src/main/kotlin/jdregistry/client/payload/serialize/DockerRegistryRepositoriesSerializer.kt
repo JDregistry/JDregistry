@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.databind.ser.std.StdSerializer
 import jdregistry.client.payload.DockerRegistryRepositories
 
-
 /**
  * The Serializer for [DockerRegistryRepositories]
  *
@@ -14,7 +13,7 @@ import jdregistry.client.payload.DockerRegistryRepositories
  *
  */
 class DockerRegistryRepositoriesSerializer
-@JvmOverloads constructor(clazz: Class<DockerRegistryRepositories>? = null): StdSerializer<DockerRegistryRepositories>(clazz) {
+@JvmOverloads constructor(clazz: Class<DockerRegistryRepositories>? = null) : StdSerializer<DockerRegistryRepositories>(clazz) {
 
     override fun serialize(value: DockerRegistryRepositories, gen: JsonGenerator, provider: SerializerProvider) {
 

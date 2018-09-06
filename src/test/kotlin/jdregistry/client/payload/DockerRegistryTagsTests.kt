@@ -6,7 +6,6 @@ import io.github.benas.randombeans.api.EnhancedRandom
 import org.junit.Assert
 import org.junit.Test
 
-
 class DockerRegistryTagsTests {
 
     private companion object {
@@ -18,7 +17,7 @@ class DockerRegistryTagsTests {
             // Object Mapper is recreated for reading and writing such that is ensured that it does not
             // keep state
             val serialized = ObjectMapper().writeValueAsString(item)
-            val read : DockerRegistryTags = ObjectMapper().readValue(serialized)
+            val read: DockerRegistryTags = ObjectMapper().readValue(serialized)
             Assert.assertEquals(read, item)
         }
 
@@ -30,9 +29,7 @@ class DockerRegistryTagsTests {
 
             items.forEach { assertEqualAfterSerialization(it) }
         }
-
     }
-
 
     /*
      * Test serialization

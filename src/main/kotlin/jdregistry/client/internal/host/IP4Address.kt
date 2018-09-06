@@ -1,6 +1,5 @@
 package jdregistry.client.internal.host
 
-
 /**
  * Represents a remote [Host] via an IP4 Address
  *
@@ -10,7 +9,7 @@ package jdregistry.client.internal.host
  */
 internal data class IP4Address(
 
-        override val repr: String
+    override val repr: String
 ) : Host {
 
     init {
@@ -30,7 +29,6 @@ internal data class IP4Address(
 
             val spt = repr.split('.').map { it.toInt() }
             spt.size == 4 && spt.all { it in 0..255 }
-
         } catch (e: NumberFormatException) {
 
             false

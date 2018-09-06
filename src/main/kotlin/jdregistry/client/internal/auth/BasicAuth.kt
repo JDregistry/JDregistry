@@ -2,7 +2,7 @@ package jdregistry.client.internal.auth
 
 import jdregistry.client.Authenticate
 import java.nio.charset.Charset
-import java.util.*
+import java.util.Base64
 
 /**
  * Information needed for performing Http Basic Authenticate
@@ -12,9 +12,8 @@ import java.util.*
  *
  */
 internal data class BasicAuth(
-
-        val username: String,
-        val password: String
+    val username: String,
+    val password: String
 ) : Authenticate {
 
     private fun encodeBase64(charset: Charset = Charsets.UTF_8) =

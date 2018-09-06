@@ -8,7 +8,6 @@ import org.junit.Test
 
 class DockerRegistryGetClientNoAuthTests {
 
-
     companion object {
 
         // Container that is used for fetching Docker Registry Notifications
@@ -16,7 +15,7 @@ class DockerRegistryGetClientNoAuthTests {
         @JvmField
         val REGISTRY = SingleExposedPortContainer("lukaszimmermann/test-registry:2.6.2", 5000)
 
-      lateinit var client: DockerRegistryGetClient
+        lateinit var client: DockerRegistryGetClient
 
         @BeforeClass @JvmStatic fun beforeClass() {
 
@@ -29,7 +28,6 @@ class DockerRegistryGetClientNoAuthTests {
         Assert.assertTrue(client.implementsV2RegistryAPI())
     }
 
-
     @Test fun list_repos_1() {
 
         val repos = client.listRepositories()
@@ -38,7 +36,6 @@ class DockerRegistryGetClientNoAuthTests {
         Assert.assertTrue("testrepo2" in repos)
         Assert.assertTrue(repos.size > 2)
     }
-
 
     @Test fun list_tags_1() {
 
@@ -52,7 +49,7 @@ class DockerRegistryGetClientNoAuthTests {
 
         Assert.assertTrue(tags0.tags == null)
         val tags1Tags = tags1.tags
-        Assert.assertTrue(tags1Tags != null &&  "latest" in tags1Tags && tags1Tags.size == 1)
+        Assert.assertTrue(tags1Tags != null && "latest" in tags1Tags && tags1Tags.size == 1)
         val tags2Tags = tags2.tags
         Assert.assertTrue(tags2Tags != null && "latest" in tags2Tags && "other" in tags2Tags && tags2Tags.size == 2)
     }

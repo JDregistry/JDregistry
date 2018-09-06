@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.node.ArrayNode
 import jdregistry.client.payload.DockerRegistryRepositories
 import java.io.IOException
 
-
 /**
  * The Deserializer for [DockerRegistryRepositories]
  *
@@ -23,7 +22,7 @@ class DockerRegistryRepositoriesDeserializer
     @Throws(IOException::class, JsonProcessingException::class)
     override fun deserialize(jp: JsonParser, ctxt: DeserializationContext): DockerRegistryRepositories {
 
-        val node : JsonNode = jp.codec.readTree(jp)
+        val node: JsonNode = jp.codec.readTree(jp)
         val repos = (node.get("repositories") as ArrayNode).map { it.asText() }
         return DockerRegistryRepositories(repos)
     }

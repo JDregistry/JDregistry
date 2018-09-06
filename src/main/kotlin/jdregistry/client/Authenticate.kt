@@ -18,8 +18,7 @@ interface Authenticate {
      * @param charset The charset to be used for encoding the Authorization
      * @return The [String] that represents the encoded value for the Authorization header.
      */
-    fun authorization(charset: Charset = Charsets.UTF_8) : String
-
+    fun authorization(charset: Charset = Charsets.UTF_8): String
 
     companion object {
 

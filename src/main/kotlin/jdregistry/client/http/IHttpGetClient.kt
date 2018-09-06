@@ -2,7 +2,6 @@ package jdregistry.client.http
 
 import java.net.URI
 
-
 /**
  * Interface for a HTTP client that only support the HTTP GET method on the provided URI.
  *

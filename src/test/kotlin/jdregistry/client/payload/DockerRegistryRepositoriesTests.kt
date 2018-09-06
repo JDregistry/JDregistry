@@ -6,7 +6,6 @@ import io.github.benas.randombeans.api.EnhancedRandom
 import org.junit.Assert
 import org.junit.Test
 
-
 class DockerRegistryRepositoriesTests {
 
     private companion object {
@@ -18,7 +17,7 @@ class DockerRegistryRepositoriesTests {
             // Object Mapper is recreated for reading and writing such that is ensured that it does not
             // keep state
             val serialized = jacksonObjectMapper().writeValueAsString(item)
-            val read : DockerRegistryRepositories = jacksonObjectMapper().readValue(serialized)
+            val read: DockerRegistryRepositories = jacksonObjectMapper().readValue(serialized)
             Assert.assertEquals(read, item)
         }
 
@@ -31,7 +30,6 @@ class DockerRegistryRepositoriesTests {
             items.forEach(Companion::assertEqualAfterSerialization)
         }
     }
-
 
     /*
      * Test serialization

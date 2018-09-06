@@ -11,6 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class DockerRegistryTags(
 
-        @JsonProperty("name") val name : String,
-        @JsonProperty("tags") val tags : List<String>? // Must be nullable
+    @JsonProperty("name") val name: String,
+    @JsonProperty("tags") val tags: List<String>? // Must be nullable
 )

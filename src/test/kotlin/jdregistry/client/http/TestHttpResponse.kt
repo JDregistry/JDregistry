@@ -3,7 +3,6 @@ package jdregistry.client.http
 import org.apache.http.client.methods.CloseableHttpResponse
 import java.io.ByteArrayOutputStream
 
-
 /**
  * Test class for implementing [IHttpResponse].
  *
@@ -11,7 +10,7 @@ import java.io.ByteArrayOutputStream
  * @since 0.0.1
  *
  */
-class TestHttpResponse(response : CloseableHttpResponse) : IHttpResponse {
+class TestHttpResponse(response: CloseableHttpResponse) : IHttpResponse {
 
     override val body: String
     override val authenticate: List<String>

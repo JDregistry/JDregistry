@@ -9,7 +9,8 @@ import java.net.URI
  *  @since 0.0.1
  */
 data class DockerRegistryClientException(
-        override val message: String,
-        val statusCode: Int,
-        val remote: URI,
-        val method: String = "GET") : Exception(message)
+    override val message: String,
+    val statusCode: Int,
+    val remote: URI,
+    val method: String = "GET"
+) : Exception(message)

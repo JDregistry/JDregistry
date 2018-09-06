@@ -7,7 +7,6 @@ import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
 import java.net.URI
 
-
 /**
  * Interface for representing client that can communicate with a Docker Registry via HTTP GET.
  *

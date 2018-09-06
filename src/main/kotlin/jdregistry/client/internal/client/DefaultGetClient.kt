@@ -25,10 +25,11 @@ import java.net.URI
  *
  */
 internal class DefaultGetClient(
-        host: Host,
-        port: Int,
-        private val client: IHttpGetClient,
-        private val auth: Authenticate? = null) : DockerRegistryGetClient {
+    host: Host,
+    port: Int,
+    private val client: IHttpGetClient,
+    private val auth: Authenticate? = null
+) : DockerRegistryGetClient {
 
     private val mapper = jacksonObjectMapper()
 
@@ -64,9 +65,10 @@ internal class DefaultGetClient(
 
     private fun bearer(token: String) = "Bearer $token"
 
-
     private inline fun <reified T : Any> performAuthenticationChallenge(
-            response: IHttpResponse, originalURI: URI): T {
+        response: IHttpResponse,
+        originalURI: URI
+    ): T {
 
         if (auth == null) {
 
@@ -108,7 +110,6 @@ internal class DefaultGetClient(
 
         return mapper.readValue(newReponse.body)
     }
-
 
     override fun listRepositories(): DockerRegistryRepositories =
 

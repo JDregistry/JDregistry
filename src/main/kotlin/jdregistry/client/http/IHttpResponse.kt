@@ -1,6 +1,5 @@
 package jdregistry.client.http
 
-
 /**
  * Represents the response of a Http Request.
  *

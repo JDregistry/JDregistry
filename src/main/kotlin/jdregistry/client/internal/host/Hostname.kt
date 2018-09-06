@@ -1,6 +1,5 @@
 package jdregistry.client.internal.host
 
-
 /**
  * Represents a remote host via a Hostname
  *
@@ -10,7 +9,7 @@ package jdregistry.client.internal.host
  */
 internal data class Hostname(
 
-        override val repr: String
+    override val repr: String
 ) : Host {
 
     init {
