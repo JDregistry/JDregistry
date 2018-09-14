@@ -2,15 +2,12 @@ package jdregistry.client.payload
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import io.github.benas.randombeans.api.EnhancedRandom
 import org.junit.Assert
 import org.junit.Test
 
 class DockerRegistryRepositoriesTests {
 
     private companion object {
-        const val ELEMENTS = 100
-        val clazz = DockerRegistryRepositories::class.java
 
         fun assertEqualAfterSerialization(item: DockerRegistryRepositories) {
 
@@ -36,19 +33,14 @@ class DockerRegistryRepositoriesTests {
      *
      */
 
-    @Test fun equal_after_serialization_collection() {
-
-        assertAllEqualAfterSerialization(EnhancedRandom.randomCollectionOf(ELEMENTS, clazz))
-    }
-
     @Test fun equal_after_serialization_list() {
 
-        assertAllEqualAfterSerialization(EnhancedRandom.randomListOf(ELEMENTS, clazz))
+        assertAllEqualAfterSerialization(randomRepositories())
     }
 
     @Test fun equal_after_serialization_set() {
 
-        assertAllEqualAfterSerialization(EnhancedRandom.randomSetOf(ELEMENTS, clazz))
+        assertAllEqualAfterSerialization(randomRepositories().toSet())
     }
 
     @Test fun equal_after_serialization_no_repositories_empty() {
@@ -85,7 +77,8 @@ class DockerRegistryRepositoriesTests {
 
     @Test fun elements_in_list_are_equal_to_elements_in_repo() {
 
-        val ls = EnhancedRandom.randomListOf(ELEMENTS, String::class.java)
+        val ls = List(randomInt(100)) { DockerRepositoryName.random() }
+
         val repo = DockerRegistryRepositories(ls)
         ls.forEachIndexed { index, s ->
             Assert.assertEquals(s, repo[index])

@@ -1,6 +1,7 @@
 package jdregistry.client
 
 import jdregistry.client.http.TestHttpClient
+import jdregistry.client.payload.DockerRepositoryName
 import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -31,9 +32,9 @@ class DockerRegistryGetClientNoAuthTests {
     @Test fun list_repos_1() {
 
         val repos = client.listRepositories()
-        Assert.assertTrue("testrepo0" in repos)
-        Assert.assertTrue("testrepo1" in repos)
-        Assert.assertTrue("testrepo2" in repos)
+        Assert.assertTrue(DockerRepositoryName.of("testrepo0") in repos)
+        Assert.assertTrue(DockerRepositoryName.of("testrepo1") in repos)
+        Assert.assertTrue(DockerRepositoryName.of("testrepo2") in repos)
         Assert.assertTrue(repos.size > 2)
     }
 

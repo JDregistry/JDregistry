@@ -12,16 +12,18 @@ import jdregistry.client.payload.DockerRegistryRepositories
  * @since 0.0.1
  *
  */
-class DockerRegistryRepositoriesSerializer
-@JvmOverloads constructor(clazz: Class<DockerRegistryRepositories>? = null) : StdSerializer<DockerRegistryRepositories>(clazz) {
+class DockerRegistryRepositoriesSerializer @JvmOverloads constructor(clazz: Class<DockerRegistryRepositories>? = null)
+    : StdSerializer<DockerRegistryRepositories>(clazz) {
 
     override fun serialize(value: DockerRegistryRepositories, gen: JsonGenerator, provider: SerializerProvider) {
 
-        gen.writeStartObject()
-        gen.writeFieldName("repositories")
-        gen.writeStartArray()
-        value.forEach(gen::writeString)
-        gen.writeEndArray()
-        gen.writeEndObject()
+        with(gen) {
+            writeStartObject()
+            writeFieldName("repositories")
+            writeStartArray()
+            value.forEach { writeString(it.asString()) }
+            writeEndArray()
+            writeEndObject()
+        }
     }
 }
