@@ -27,14 +27,15 @@ import java.net.URI
  */
 internal class DefaultGetClient(
     host: Host,
-    port: Int,
+    override val port: Int,
     private val client: IHttpGetClient,
     private val auth: Authenticate? = null
 ) : DockerRegistryGetClient {
 
     private val mapper = jacksonObjectMapper()
+    private val uri: URI = URI.create("http://${host.repr}:$port")
 
-    override val uri: URI = URI.create("http://${host.repr}:$port")
+    override val hostname = host.repr
 
     // Generates the V2 endpoint from Host and Port parameters
     private val endpointV2 = uri.resolve("/v2/")

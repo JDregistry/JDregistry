@@ -6,7 +6,6 @@ import jdregistry.client.internal.host.Host
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
 import jdregistry.client.data.DockerRepositoryName
-import java.net.URI
 
 /**
  * Interface for representing client that can communicate with a Docker Registry via HTTP GET.
@@ -21,9 +20,15 @@ import java.net.URI
 interface DockerRegistryGetClient {
 
     /**
-     * The URI that the Docker Registry is going to be accessed at.
+     * The `hostname` which is used to access this registry
+     *
      */
-    val uri: URI
+    val hostname: String
+
+    /**
+     * The port that the registry is going to be accessed at
+     */
+    val port: Int
 
     /**
      *  Lists all the available repositories in the Docker Registry.
