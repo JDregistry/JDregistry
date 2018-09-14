@@ -52,6 +52,29 @@ data class DockerRepositoryName(
 
     override fun toString() = asString()
 
+    /**
+     * Resolves `this` [DockerRepositoryName] locally against the provided `tag`
+     *
+     * @param tag The [DockerTag] to resolve against
+     * @return The resolved [DockerRepositoryName] against the provided `tag` as [String].
+     *         The result will be of the form namespace/myrepo:tag
+     */
+    fun resolve(tag: DockerTag = DockerTag.LATEST) = "${this.asString()}:${tag.repr}"
+
+    /**
+     * Resolves `this` [DockerRepositoryName] against the provided `host` and `tag`
+     *
+     * @param host The `host` as [String] to resolve against
+     * @param port The `port` as [Int] to resolve against
+     * @param tag The [DockerTag] to resolve against
+     * @return The [String] that represents the resolved [DockerRepositoryName]
+     */
+    fun resolve(host: String, port: Int = 5000, tag: DockerTag = DockerTag.LATEST): String {
+
+        require(port > 0)
+        return "$host:$port$SEP${this.resolve(tag)}"
+    }
+
     private companion object {
 
         const val SEP = "/"
