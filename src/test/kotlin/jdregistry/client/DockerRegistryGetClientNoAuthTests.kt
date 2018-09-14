@@ -35,7 +35,12 @@ class DockerRegistryGetClientNoAuthTests {
         Assert.assertTrue(DockerRepositoryName.of("testrepo0") in repos)
         Assert.assertTrue(DockerRepositoryName.of("testrepo1") in repos)
         Assert.assertTrue(DockerRepositoryName.of("testrepo2") in repos)
-        Assert.assertTrue(repos.size > 2)
+
+        Assert.assertTrue(DockerRepositoryName.of("namespace/testrepo0") in repos)
+        Assert.assertTrue(DockerRepositoryName.of("namespace/testrepo1") in repos)
+        Assert.assertTrue(DockerRepositoryName.of("namespace/testrepo2") in repos)
+
+        Assert.assertTrue(repos.size > 5)
     }
 
     @Test fun list_tags_1() {
@@ -47,6 +52,23 @@ class DockerRegistryGetClientNoAuthTests {
         Assert.assertTrue(tags0.name == "testrepo0")
         Assert.assertTrue(tags1.name == "testrepo1")
         Assert.assertTrue(tags2.name == "testrepo2")
+
+        Assert.assertTrue(tags0.tags == null)
+        val tags1Tags = tags1.tags
+        Assert.assertTrue(tags1Tags != null && "latest" in tags1Tags && tags1Tags.size == 1)
+        val tags2Tags = tags2.tags
+        Assert.assertTrue(tags2Tags != null && "latest" in tags2Tags && "other" in tags2Tags && tags2Tags.size == 2)
+    }
+
+    @Test fun list_tags_2() {
+
+        val tags0 = client.listTags("namespace/testrepo0")
+        val tags1 = client.listTags("namespace/testrepo1")
+        val tags2 = client.listTags("namespace/testrepo2")
+
+        Assert.assertTrue(tags0.name == "namespace/testrepo0")
+        Assert.assertTrue(tags1.name == "namespace/testrepo1")
+        Assert.assertTrue(tags2.name == "namespace/testrepo2")
 
         Assert.assertTrue(tags0.tags == null)
         val tags1Tags = tags1.tags
