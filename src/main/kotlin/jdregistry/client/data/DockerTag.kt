@@ -4,7 +4,6 @@ package jdregistry.client.data
  * Represents a Docker Tag for the Docker Registry
  *
  * @author Lukas Zimmermann
- * @see CommonDockerTag
  * @since 0.0.4
  *
  */

@@ -9,7 +9,7 @@
     },
 
     "version": {
-        "name": "0.0.3",
+        "name": "0.0.4",
         "released": "2018-09-05",
         "gpgSign": false
     },
@@ -18,7 +18,7 @@
     [
         {
           "includePattern": "build/libs/(.*)",
-          "uploadPattern": "jdregistry/client/0.0.3/$1",
+          "uploadPattern": "jdregistry/client/0.0.4/$1",
           "matrixParams": { "override": 1 }
         }
     ],
