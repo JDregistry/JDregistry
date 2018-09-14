@@ -37,7 +37,6 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.70"
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
     testCompile group: 'org.testcontainers', name: 'testcontainers', version: '1.8.3'
-    testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
 }
 
 publishing {

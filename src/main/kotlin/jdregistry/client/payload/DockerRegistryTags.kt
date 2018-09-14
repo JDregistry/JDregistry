@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.data.DockerTag
 import jdregistry.client.payload.serialize.DockerRegistryTagsDeserializer
 import jdregistry.client.payload.serialize.DockerRegistryTagsSerializer
 
@@ -22,5 +23,5 @@ data class DockerRegistryTags(
     val name: DockerRepositoryName,
 
     @JsonProperty("tags")
-    val tags: List<String>? // Must be nullable
+    val tags: List<DockerTag>? // Must be nullable
 )

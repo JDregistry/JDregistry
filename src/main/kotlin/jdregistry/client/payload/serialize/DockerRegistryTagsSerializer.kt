@@ -26,7 +26,7 @@ class DockerRegistryTagsSerializer @JvmOverloads constructor(clazz: Class<Docker
             // Write 'tags'
             writeFieldName("tags")
             writeStartArray()
-            value.tags?.forEach(gen::writeString)
+            value.tags?.forEach { gen.writeString(it.repr) }
             writeEndArray()
 
             writeEndObject()

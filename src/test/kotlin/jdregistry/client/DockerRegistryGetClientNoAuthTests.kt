@@ -2,6 +2,7 @@ package jdregistry.client
 
 import jdregistry.client.http.TestHttpClient
 import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.data.DockerTag
 import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -30,6 +31,8 @@ class DockerRegistryGetClientNoAuthTests {
         val repo4 = DockerRepositoryName("namespace/testrepo0")
         val repo5 = DockerRepositoryName("namespace/testrepo1")
         val repo6 = DockerRepositoryName("namespace/testrepo2")
+
+        val TAG_OTHER = DockerTag.of("other")
     }
 
     @Test fun valid_v2_api() {
@@ -63,9 +66,9 @@ class DockerRegistryGetClientNoAuthTests {
 
         Assert.assertTrue(tags0.tags == null)
         val tags1Tags = tags1.tags
-        Assert.assertTrue(tags1Tags != null && "latest" in tags1Tags && tags1Tags.size == 1)
+        Assert.assertTrue(tags1Tags != null && DockerTag.LATEST in tags1Tags && tags1Tags.size == 1)
         val tags2Tags = tags2.tags
-        Assert.assertTrue(tags2Tags != null && "latest" in tags2Tags && "other" in tags2Tags && tags2Tags.size == 2)
+        Assert.assertTrue(tags2Tags != null && DockerTag.LATEST in tags2Tags && TAG_OTHER in tags2Tags && tags2Tags.size == 2)
     }
 
     @Test fun list_tags_2() {
@@ -80,8 +83,8 @@ class DockerRegistryGetClientNoAuthTests {
 
         Assert.assertTrue(tags0.tags == null)
         val tags1Tags = tags1.tags
-        Assert.assertTrue(tags1Tags != null && "latest" in tags1Tags && tags1Tags.size == 1)
+        Assert.assertTrue(tags1Tags != null && DockerTag.LATEST in tags1Tags && tags1Tags.size == 1)
         val tags2Tags = tags2.tags
-        Assert.assertTrue(tags2Tags != null && "latest" in tags2Tags && "other" in tags2Tags && tags2Tags.size == 2)
+        Assert.assertTrue(tags2Tags != null && DockerTag.LATEST in tags2Tags && TAG_OTHER in tags2Tags && tags2Tags.size == 2)
     }
 }

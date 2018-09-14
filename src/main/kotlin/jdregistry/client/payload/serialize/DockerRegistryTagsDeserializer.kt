@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
 import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.data.DockerTag
 import java.io.IOException
 
 /**
@@ -29,6 +30,8 @@ class DockerRegistryTagsDeserializer
         val tags = node.get("tags")
 
         // val tags = (node.get("tags") as ArrayNode).map { it.asText()}
-        return DockerRegistryTags(repo, if (tags.isNull) null else tags.map { it.asText() })
+        return DockerRegistryTags(
+                repo,
+                if (tags.isNull) null else tags.map { DockerTag.of(it.asText()) })
     }
 }
