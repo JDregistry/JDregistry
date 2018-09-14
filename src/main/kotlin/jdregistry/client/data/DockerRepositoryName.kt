@@ -69,10 +69,10 @@ data class DockerRepositoryName(
      * @param tag The [DockerTag] to resolve against
      * @return The [String] that represents the resolved [DockerRepositoryName]
      */
-    fun resolve(host: String, port: Int = 5000, tag: DockerTag = DockerTag.LATEST): String {
+    fun resolve(host: String, port: Int? = null, tag: DockerTag = DockerTag.LATEST): String {
 
-        require(port > 0)
-        return "$host:$port$SEP${this.resolve(tag)}"
+        val portS = port?.let { ":$it" } ?: ""
+        return "$host$portS$SEP${this.resolve(tag)}"
     }
 
     private companion object {
