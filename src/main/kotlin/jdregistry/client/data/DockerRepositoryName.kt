@@ -79,6 +79,6 @@ data class DockerRepositoryName(
 
         const val SEP = "/"
         val pathComponentRegex = Regex("[a-z0-9]+(?:[._-][a-z0-9]+)*")
-        fun isValidPathComponent(item: String) = item.length < 30 && item.matches(pathComponentRegex)
+        fun isValidPathComponent(item: String) = item.matches(pathComponentRegex)
     }
 }
