@@ -15,6 +15,7 @@ import jdregistry.client.internal.http.UNAUTHORIZED
 import jdregistry.client.internal.withQuery
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
+import jdregistry.client.data.DockerRepositoryName
 import java.net.URI
 
 /**
@@ -115,8 +116,8 @@ internal class DefaultGetClient(
 
             readGetResponse(this.catalog)
 
-    override fun listTags(repository: String): DockerRegistryTags =
-            readGetResponse(this.catalog.resolve("/v2/$repository/tags/list"))
+    override fun listTags(repository: DockerRepositoryName): DockerRegistryTags =
+            readGetResponse(this.catalog.resolve("/v2/${repository.asString()}/tags/list"))
 
     override fun implementsV2RegistryAPI() = client.get(endpointV2).statusCode == 200
 

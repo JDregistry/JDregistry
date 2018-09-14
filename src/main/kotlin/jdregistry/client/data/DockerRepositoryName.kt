@@ -1,9 +1,23 @@
-package jdregistry.client.payload
+package jdregistry.client.data
 
+/**
+ * Represents a Docker Repository Name, as specified by the official V2 API of Docker Registry
+ *
+ * @author Lukas Zimmermann
+ * @since 0.0.3
+ */
 data class DockerRepositoryName(
     val firstPathComponent: String,
     private val moreComponents: List<String> = emptyList()
 ) {
+
+    /**
+     * Convenient Constructor to also allow greating [DockerRepositoryName] instance by supplying the
+     * String representation of the repository
+     *
+     */
+    constructor(input: String) : this(input.split(SEP)[0], input.split(SEP).drop(1))
+
     init {
         // First component must be a valid path component
         require(isValidPathComponent(firstPathComponent)) {
@@ -38,16 +52,10 @@ data class DockerRepositoryName(
 
     override fun toString() = asString()
 
-    companion object {
+    private companion object {
 
-        private const val SEP = "/"
-        private val pathComponentRegex = Regex("[a-z0-9]+(?:[._-][a-z0-9]+)*")
-        private fun isValidPathComponent(item: String) = item.length < 30 && item.matches(pathComponentRegex)
-
-        fun of(input: String): DockerRepositoryName {
-
-            val spt = input.split(SEP)
-            return DockerRepositoryName(spt[0], spt.drop(1))
-        }
+        const val SEP = "/"
+        val pathComponentRegex = Regex("[a-z0-9]+(?:[._-][a-z0-9]+)*")
+        fun isValidPathComponent(item: String) = item.length < 30 && item.matches(pathComponentRegex)
     }
 }

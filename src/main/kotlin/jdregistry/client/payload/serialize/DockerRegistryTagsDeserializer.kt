@@ -5,8 +5,8 @@ import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
-import com.fasterxml.jackson.databind.node.ArrayNode
 import jdregistry.client.payload.DockerRegistryRepositories
+import jdregistry.client.payload.DockerRegistryTags
 import jdregistry.client.data.DockerRepositoryName
 import java.io.IOException
 
@@ -17,14 +17,18 @@ import java.io.IOException
  * @since 0.0.1
  *
  */
-class DockerRegistryRepositoriesDeserializer
-@JvmOverloads constructor(clazz: Class<DockerRegistryRepositories>? = null) : StdDeserializer<DockerRegistryRepositories>(clazz) {
+class DockerRegistryTagsDeserializer
+@JvmOverloads constructor(clazz: Class<DockerRegistryTags>? = null) : StdDeserializer<DockerRegistryTags>(clazz) {
 
     @Throws(IOException::class, JsonProcessingException::class)
-    override fun deserialize(jp: JsonParser, ctxt: DeserializationContext): DockerRegistryRepositories {
+    override fun deserialize(jp: JsonParser, ctxt: DeserializationContext): DockerRegistryTags {
 
         val node: JsonNode = jp.codec.readTree(jp)
-        return DockerRegistryRepositories(
-                (node.get("repositories") as ArrayNode).map { DockerRepositoryName(it.asText()) })
+
+        val repo = DockerRepositoryName(node.get("name").asText())
+        val tags = node.get("tags")
+
+        // val tags = (node.get("tags") as ArrayNode).map { it.asText()}
+        return DockerRegistryTags(repo, if (tags.isNull) null else tags.map { it.asText() })
     }
 }

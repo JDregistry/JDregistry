@@ -5,6 +5,7 @@ import jdregistry.client.internal.client.DefaultGetClient
 import jdregistry.client.internal.host.Host
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
+import jdregistry.client.data.DockerRepositoryName
 import java.net.URI
 
 /**
@@ -39,7 +40,7 @@ interface DockerRegistryGetClient {
      *
      * @return All tags of the requested repository, represented as [DockerRegistryTags] object.
      */
-    fun listTags(repository: String): DockerRegistryTags
+    fun listTags(repository: DockerRepositoryName): DockerRegistryTags
 
     /**
      * Checks whether the Registry targeted by this client supports the V2 API of Docker Registry

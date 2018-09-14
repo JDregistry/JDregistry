@@ -77,7 +77,7 @@ class DockerRegistryRepositoriesTests {
 
     @Test fun elements_in_list_are_equal_to_elements_in_repo() {
 
-        val ls = List(randomInt(100)) { DockerRepositoryName.random() }
+        val ls = List(randomInt(100)) { randomDockerRepositoryName() }
 
         val repo = DockerRegistryRepositories(ls)
         ls.forEachIndexed { index, s ->

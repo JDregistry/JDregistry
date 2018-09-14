@@ -1,5 +1,7 @@
 package jdregistry.client.payload
 
+import io.github.benas.randombeans.api.EnhancedRandom
+import jdregistry.client.data.DockerRepositoryName
 import java.util.Random
 import kotlin.streams.asSequence
 
@@ -14,7 +16,7 @@ internal fun randomString(max: Int): String {
             .joinToString("")
 }
 
-internal fun DockerRepositoryName.Companion.random(): DockerRepositoryName {
+internal fun randomDockerRepositoryName(): DockerRepositoryName {
 
     val maxSLength = randomInt(29)
     var nElements = Math.floor(255.0 / maxSLength).toInt()
@@ -22,7 +24,7 @@ internal fun DockerRepositoryName.Companion.random(): DockerRepositoryName {
         nElements--
     }
     val ls = List(nElements) { randomString(maxSLength) }
-    return DockerRepositoryName.of(ls.joinToString("/"))
+    return DockerRepositoryName(ls.joinToString("/"))
 }
 
 internal fun randomRepositories(): List<DockerRegistryRepositories> =
@@ -31,5 +33,12 @@ internal fun randomRepositories(): List<DockerRegistryRepositories> =
         List(300) { _ ->
 
             val nRepos = randomInt(100)
-            DockerRegistryRepositories(List(nRepos) { DockerRepositoryName.random() })
+            DockerRegistryRepositories(List(nRepos) { randomDockerRepositoryName() })
+        }
+
+internal fun randomTags(): List<DockerRegistryTags> =
+
+        List(300) { _ ->
+
+            DockerRegistryTags(randomDockerRepositoryName(), EnhancedRandom.randomListOf(100, String::class.java))
         }

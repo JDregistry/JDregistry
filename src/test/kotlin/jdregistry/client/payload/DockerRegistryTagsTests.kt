@@ -2,15 +2,15 @@ package jdregistry.client.payload
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import io.github.benas.randombeans.api.EnhancedRandom
+import jdregistry.client.data.DockerRepositoryName
 import org.junit.Assert
 import org.junit.Test
 
 class DockerRegistryTagsTests {
 
     private companion object {
-        const val ELEMENTS = 100
-        val clazz = DockerRegistryTags::class.java
+
+        val DUMMY_REPO = DockerRepositoryName("dummy")
 
         fun assertEqualAfterSerialization(item: DockerRegistryTags) {
 
@@ -38,36 +38,31 @@ class DockerRegistryTagsTests {
 
     @Test fun equal_after_serialization_collection() {
 
-        assertAllEqualAfterSerialization(EnhancedRandom.randomCollectionOf(ELEMENTS, clazz))
-    }
-
-    @Test fun equal_after_serialization_list() {
-
-        assertAllEqualAfterSerialization(EnhancedRandom.randomListOf(ELEMENTS, clazz))
+        assertAllEqualAfterSerialization(randomTags())
     }
 
     @Test fun equal_after_serialization_set() {
 
-        assertAllEqualAfterSerialization(EnhancedRandom.randomSetOf(ELEMENTS, clazz))
+        assertAllEqualAfterSerialization(randomTags().toSet())
     }
 
     @Test fun equal_after_serialization_no_tags_empty() {
 
-        assertEqualAfterSerialization(DockerRegistryTags("", emptyList()))
+        assertEqualAfterSerialization(DockerRegistryTags(DUMMY_REPO, emptyList()))
     }
 
     @Test fun equal_after_serialization_no_repositories_static() {
 
-        assertEqualAfterSerialization(DockerRegistryTags("", listOf()))
+        assertEqualAfterSerialization(DockerRegistryTags(DUMMY_REPO, listOf()))
     }
 
     @Test fun equal_after_serialization_no_repositories_mutable() {
 
-        assertEqualAfterSerialization(DockerRegistryTags("", mutableListOf()))
+        assertEqualAfterSerialization(DockerRegistryTags(DUMMY_REPO, mutableListOf()))
     }
 
     @Test fun equal_after_serialization_no_repositories_array() {
 
-        assertEqualAfterSerialization(DockerRegistryTags("", arrayListOf()))
+        assertEqualAfterSerialization(DockerRegistryTags(DUMMY_REPO, arrayListOf()))
     }
 }

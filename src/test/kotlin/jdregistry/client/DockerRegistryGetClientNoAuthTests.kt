@@ -1,7 +1,7 @@
 package jdregistry.client
 
 import jdregistry.client.http.TestHttpClient
-import jdregistry.client.payload.DockerRepositoryName
+import jdregistry.client.data.DockerRepositoryName
 import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -9,7 +9,7 @@ import org.junit.Test
 
 class DockerRegistryGetClientNoAuthTests {
 
-    companion object {
+    private companion object {
 
         // Container that is used for fetching Docker Registry Notifications
         @ClassRule
@@ -22,6 +22,14 @@ class DockerRegistryGetClientNoAuthTests {
 
             client = DockerRegistryGetClient.of(REGISTRY.containerIpAddress, REGISTRY.mappedPort, TestHttpClient())
         }
+
+        // The repositories
+        val repo1 = DockerRepositoryName("testrepo0")
+        val repo2 = DockerRepositoryName("testrepo1")
+        val repo3 = DockerRepositoryName("testrepo2")
+        val repo4 = DockerRepositoryName("namespace/testrepo0")
+        val repo5 = DockerRepositoryName("namespace/testrepo1")
+        val repo6 = DockerRepositoryName("namespace/testrepo2")
     }
 
     @Test fun valid_v2_api() {
@@ -32,26 +40,26 @@ class DockerRegistryGetClientNoAuthTests {
     @Test fun list_repos_1() {
 
         val repos = client.listRepositories()
-        Assert.assertTrue(DockerRepositoryName.of("testrepo0") in repos)
-        Assert.assertTrue(DockerRepositoryName.of("testrepo1") in repos)
-        Assert.assertTrue(DockerRepositoryName.of("testrepo2") in repos)
+        Assert.assertTrue(repo1 in repos)
+        Assert.assertTrue(repo2 in repos)
+        Assert.assertTrue(repo3 in repos)
 
-        Assert.assertTrue(DockerRepositoryName.of("namespace/testrepo0") in repos)
-        Assert.assertTrue(DockerRepositoryName.of("namespace/testrepo1") in repos)
-        Assert.assertTrue(DockerRepositoryName.of("namespace/testrepo2") in repos)
+        Assert.assertTrue(repo4 in repos)
+        Assert.assertTrue(repo5 in repos)
+        Assert.assertTrue(repo6 in repos)
 
         Assert.assertTrue(repos.size > 5)
     }
 
     @Test fun list_tags_1() {
 
-        val tags0 = client.listTags("testrepo0")
-        val tags1 = client.listTags("testrepo1")
-        val tags2 = client.listTags("testrepo2")
+        val tags0 = client.listTags(repo1)
+        val tags1 = client.listTags(repo2)
+        val tags2 = client.listTags(repo3)
 
-        Assert.assertTrue(tags0.name == "testrepo0")
-        Assert.assertTrue(tags1.name == "testrepo1")
-        Assert.assertTrue(tags2.name == "testrepo2")
+        Assert.assertTrue(tags0.name == repo1)
+        Assert.assertTrue(tags1.name == repo2)
+        Assert.assertTrue(tags2.name == repo3)
 
         Assert.assertTrue(tags0.tags == null)
         val tags1Tags = tags1.tags
@@ -62,13 +70,13 @@ class DockerRegistryGetClientNoAuthTests {
 
     @Test fun list_tags_2() {
 
-        val tags0 = client.listTags("namespace/testrepo0")
-        val tags1 = client.listTags("namespace/testrepo1")
-        val tags2 = client.listTags("namespace/testrepo2")
+        val tags0 = client.listTags(repo4)
+        val tags1 = client.listTags(repo5)
+        val tags2 = client.listTags(repo6)
 
-        Assert.assertTrue(tags0.name == "namespace/testrepo0")
-        Assert.assertTrue(tags1.name == "namespace/testrepo1")
-        Assert.assertTrue(tags2.name == "namespace/testrepo2")
+        Assert.assertTrue(tags0.name == repo4)
+        Assert.assertTrue(tags1.name == repo5)
+        Assert.assertTrue(tags2.name == repo6)
 
         Assert.assertTrue(tags0.tags == null)
         val tags1Tags = tags1.tags
