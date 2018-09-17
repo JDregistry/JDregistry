@@ -4,7 +4,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-class DockerRepositryNameTests {
+class DockerRepositoryNameTests {
 
     private lateinit var repos: List<DockerRepositoryName>
     private lateinit var tags: List<DockerTag>
