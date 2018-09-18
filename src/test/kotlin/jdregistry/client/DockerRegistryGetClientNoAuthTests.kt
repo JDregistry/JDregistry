@@ -1,8 +1,9 @@
 package jdregistry.client
 
-import jdregistry.client.http.TestHttpClient
 import jdregistry.client.data.DockerRepositoryName
 import jdregistry.client.data.DockerTag
+import jdregistry.client.impl.http.apache.ApacheHttpClient
+import jdregistry.test.SingleExposedPortContainer
 import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -21,7 +22,7 @@ class DockerRegistryGetClientNoAuthTests {
 
         @BeforeClass @JvmStatic fun beforeClass() {
 
-            client = DockerRegistryGetClient.of(REGISTRY.containerIpAddress, REGISTRY.mappedPort, TestHttpClient())
+            client = DockerRegistryGetClient.of(REGISTRY.containerIpAddress, REGISTRY.mappedPort, ApacheHttpClient())
         }
 
         // The repositories

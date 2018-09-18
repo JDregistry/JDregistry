@@ -4,12 +4,12 @@
         "repo": "jdregistry",
         "subject": "lukaszimmermann",
         "labels": ["kotlin", "bintray", "gradle", "docker", "registry", "client"],
-        "vcs_url": "https://github.com/lukaszimmermann/JDregistry",
+        "vcs_url": "https://github.com/JDregistry/JDregistry",
         "licenses": ["MIT"]
     },
 
     "version": {
-        "name": "0.0.4",
+        "name": "0.0.5",
         "released": "2018-09-05",
         "gpgSign": false
     },
@@ -18,7 +18,7 @@
     [
         {
           "includePattern": "build/libs/(.*)",
-          "uploadPattern": "jdregistry/client/0.0.4/$1",
+          "uploadPattern": "jdregistry/client/client/0.0.5/$1",
           "matrixParams": { "override": 1 }
         }
     ],
