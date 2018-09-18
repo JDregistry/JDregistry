@@ -1,6 +1,6 @@
 {
     "package": {
-        "name": "client",
+        "name": "client-registry",
         "repo": "jdregistry",
         "subject": "lukaszimmermann",
         "labels": ["kotlin", "bintray", "gradle", "docker", "registry", "client"],
@@ -18,7 +18,7 @@
     [
         {
           "includePattern": "build/libs/(.*)",
-          "uploadPattern": "jdregistry/client/0.0.4/$1",
+          "uploadPattern": "jdregistry/client/registry/0.0.5/$1",
           "matrixParams": { "override": 1 }
         }
     ],
