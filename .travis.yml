@@ -1,11 +1,8 @@
-sudo: required
 language: java
-services:
-- docker
 before_install:
-- gradle clean
+- ./gradlew clean
 before_deploy:
-- gradle generatePomFileForMavenPublication
+- ./gradlew generatePomFileForMavenPublication
 deploy:
   provider: bintray
   file: "descriptor.json"
