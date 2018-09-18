@@ -2,14 +2,19 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.70'
 }
 
-group 'jdregistry'
-version '0.0.4'
+group 'jdregistry.client'
+version '0.0.5'
 
 sourceCompatibility = 1.8
 
 repositories {
     jcenter()
     mavenCentral()
+
+    // That is where the JDregistry is currently hosted
+    maven {
+        url  "https://dl.bintray.com/lukaszimmermann/jdregistry"
+    }
 }
 
 compileKotlin {
@@ -33,17 +38,21 @@ apply plugin: 'jacoco'
 
 dependencies {
     ktlint "com.github.shyiko:ktlint:0.28.0"
+
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.70"
-    testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
-    testCompile group: 'org.testcontainers', name: 'testcontainers', version: '1.8.3'
+    compile group: 'jdregistry.client', name: 'http', version: '0.0.5'
+
+    // The HTTP client interface that the registry depends on
+    testCompile group: 'jdregistry.client', name: 'http-apache-httpclient', version: '0.0.5'
+    testCompile group: 'jdregistry', name: 'test', version: '0.0.5'
 }
 
 publishing {
     publications {
         maven(MavenPublication) {
             from components.java
-            version '0.0.4'
+            version '0.0.5'
             pom.withXml {
                 asNode().dependencies.'*'.findAll() {
                     it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
@@ -59,7 +68,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/client-0.0.4.pom")
+        destination = file("$buildDir/libs/registry-0.0.5.pom")
     }
 }
 

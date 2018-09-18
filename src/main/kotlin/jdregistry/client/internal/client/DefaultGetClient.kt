@@ -6,8 +6,6 @@ import jdregistry.client.Authenticate
 import jdregistry.client.DockerRegistryAuthenticationException
 import jdregistry.client.DockerRegistryClientException
 import jdregistry.client.DockerRegistryGetClient
-import jdregistry.client.http.IHttpGetClient
-import jdregistry.client.http.IHttpResponse
 import jdregistry.client.internal.data.BearerToken
 import jdregistry.client.internal.host.Host
 import jdregistry.client.internal.http.OK
@@ -16,6 +14,8 @@ import jdregistry.client.internal.withQuery
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
 import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.http.IHttpGetClient
+import jdregistry.client.http.IHttpResponse
 import java.net.URI
 
 /**

@@ -1,11 +1,11 @@
 package jdregistry.client
 
-import jdregistry.client.http.IHttpGetClient
 import jdregistry.client.internal.client.DefaultGetClient
 import jdregistry.client.internal.host.Host
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
 import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.http.IHttpGetClient
 
 /**
  * Interface for representing client that can communicate with a Docker Registry via HTTP GET.
