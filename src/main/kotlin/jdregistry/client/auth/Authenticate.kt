@@ -1,4 +1,4 @@
-package jdregistry.client
+package jdregistry.client.auth
 
 import jdregistry.client.internal.auth.BasicAuth
 import java.nio.charset.Charset

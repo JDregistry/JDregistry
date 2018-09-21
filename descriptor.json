@@ -1,6 +1,6 @@
 {
     "package": {
-        "name": "client",
+        "name": "api",
         "repo": "jdregistry",
         "subject": "lukaszimmermann",
         "labels": ["kotlin", "bintray", "gradle", "docker", "registry", "client"],
@@ -9,8 +9,8 @@
     },
 
     "version": {
-        "name": "0.0.5",
-        "released": "2018-09-05",
+        "name": "0.0.6",
+        "released": "2018-09-21",
         "gpgSign": false
     },
 
@@ -18,7 +18,7 @@
     [
         {
           "includePattern": "build/libs/(.*)",
-          "uploadPattern": "jdregistry/client/client/0.0.5/$1",
+          "uploadPattern": "jdregistry/client/api/0.0.6/$1",
           "matrixParams": { "override": 1 }
         }
     ],

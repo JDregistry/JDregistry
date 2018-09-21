@@ -2,10 +2,10 @@ package jdregistry.client.internal.client
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import jdregistry.client.Authenticate
-import jdregistry.client.DockerRegistryAuthenticationException
-import jdregistry.client.DockerRegistryClientException
-import jdregistry.client.DockerRegistryGetClient
+import jdregistry.client.auth.Authenticate
+import jdregistry.client.auth.DockerRegistryAuthenticationException
+import jdregistry.client.api.DockerRegistryClientException
+import jdregistry.client.api.DockerRegistryGetClient
 import jdregistry.client.internal.data.BearerToken
 import jdregistry.client.internal.host.Host
 import jdregistry.client.internal.http.OK
