@@ -1,5 +1,6 @@
-package jdregistry.client
+package jdregistry.client.api
 
+import jdregistry.client.auth.Authenticate
 import jdregistry.client.internal.client.DefaultGetClient
 import jdregistry.client.internal.host.Host
 import jdregistry.client.payload.DockerRegistryRepositories

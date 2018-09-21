@@ -1,6 +1,6 @@
 package jdregistry.client.internal.auth
 
-import jdregistry.client.Authenticate
+import jdregistry.client.auth.Authenticate
 import java.nio.charset.Charset
 import java.util.Base64
 

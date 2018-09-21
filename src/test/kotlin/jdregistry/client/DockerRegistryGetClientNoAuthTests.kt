@@ -1,5 +1,6 @@
 package jdregistry.client
 
+import jdregistry.client.api.DockerRegistryGetClient
 import jdregistry.client.data.DockerRepositoryName
 import jdregistry.client.data.DockerTag
 import jdregistry.client.impl.http.apache.ApacheHttpClient

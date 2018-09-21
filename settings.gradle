@@ -1,2 +1,2 @@
-rootProject.name = 'registry'
+rootProject.name = 'api'
 enableFeaturePreview('STABLE_PUBLISHING')
