@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'jdregistry.client'
-version '0.0.5'
+version '0.0.6'
 
 sourceCompatibility = 1.8
 
@@ -41,10 +41,12 @@ dependencies {
 
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.70"
-    compile group: 'jdregistry.client', name: 'http', version: '0.0.5'
+
+    compile group: 'jdregistry.client', name: 'http', version: '0.0.6'
+    compile group: 'jdregistry.client', name: 'data', version: '0.0.6'
 
     // The HTTP client interface that the registry depends on
-    testCompile group: 'jdregistry.client', name: 'http-apache-httpclient', version: '0.0.5'
+    testCompile group: 'jdregistry.client', name: 'http-apache-httpclient', version: '0.0.6'
     testCompile group: 'jdregistry', name: 'test', version: '0.0.5'
 }
 
@@ -52,7 +54,6 @@ publishing {
     publications {
         maven(MavenPublication) {
             from components.java
-            version '0.0.5'
             pom.withXml {
                 asNode().dependencies.'*'.findAll() {
                     it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
@@ -68,7 +69,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/client-0.0.5.pom")
+        destination = file("$buildDir/libs/api-0.0.6.pom")
     }
 }
 

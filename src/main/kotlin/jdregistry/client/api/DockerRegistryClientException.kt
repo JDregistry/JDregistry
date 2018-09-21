@@ -1,4 +1,4 @@
-package jdregistry.client
+package jdregistry.client.api
 
 import java.net.URI
 
