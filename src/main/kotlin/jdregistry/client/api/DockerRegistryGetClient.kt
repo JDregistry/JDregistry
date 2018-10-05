@@ -2,11 +2,11 @@ package jdregistry.client.api
 
 import jdregistry.client.auth.Authenticate
 import jdregistry.client.internal.client.DefaultGetClient
-import jdregistry.client.internal.host.Host
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
 import jdregistry.client.data.DockerRepositoryName
 import jdregistry.client.http.IHttpGetClient
+import java.net.URI
 
 /**
  * Interface for representing client that can communicate with a Docker Registry via HTTP GET.
@@ -24,12 +24,7 @@ interface DockerRegistryGetClient {
      * The `hostname` which is used to access this registry
      *
      */
-    val hostname: String
-
-    /**
-     * The port that the registry is going to be accessed at
-     */
-    val port: Int
+    val uri: URI
 
     /**
      *  Lists all the available repositories in the Docker Registry.
@@ -69,7 +64,7 @@ interface DockerRegistryGetClient {
          * @return Instance of [DockerRegistryGetClient]
          *
          */
-        fun of(host: String, port: Int, client: IHttpGetClient, auth: Authenticate? = null): DockerRegistryGetClient =
-                DefaultGetClient(Host.of(host), port, client, auth)
+        fun of(uri: URI, client: IHttpGetClient, auth: Authenticate? = null): DockerRegistryGetClient =
+                DefaultGetClient(uri, client, auth)
     }
 }

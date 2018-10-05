@@ -7,7 +7,6 @@ import jdregistry.client.auth.DockerRegistryAuthenticationException
 import jdregistry.client.api.DockerRegistryClientException
 import jdregistry.client.api.DockerRegistryGetClient
 import jdregistry.client.internal.data.BearerToken
-import jdregistry.client.internal.host.Host
 import jdregistry.client.internal.http.OK
 import jdregistry.client.internal.http.UNAUTHORIZED
 import jdregistry.client.internal.withQuery
@@ -26,16 +25,12 @@ import java.net.URI
  *
  */
 internal class DefaultGetClient(
-    host: Host,
-    override val port: Int,
+    override val uri: URI,
     private val client: IHttpGetClient,
     private val auth: Authenticate? = null
 ) : DockerRegistryGetClient {
 
     private val mapper = jacksonObjectMapper()
-    private val uri: URI = URI.create("http://${host.repr}:$port")
-
-    override val hostname = host.repr
 
     // Generates the V2 endpoint from Host and Port parameters
     private val endpointV2 = uri.resolve("/v2/")
