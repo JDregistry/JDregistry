@@ -9,6 +9,7 @@ import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.ClassRule
 import org.junit.Test
+import java.net.URI
 
 class DockerRegistryGetClientNoAuthTests {
 
@@ -23,7 +24,9 @@ class DockerRegistryGetClientNoAuthTests {
 
         @BeforeClass @JvmStatic fun beforeClass() {
 
-            client = DockerRegistryGetClient.of(REGISTRY.containerIpAddress, REGISTRY.mappedPort, ApacheHttpClient())
+            client = DockerRegistryGetClient.of(
+                    URI.create("http://${REGISTRY.containerIpAddress}:${REGISTRY.mappedPort}"),
+                    ApacheHttpClient())
         }
 
         // The repositories
