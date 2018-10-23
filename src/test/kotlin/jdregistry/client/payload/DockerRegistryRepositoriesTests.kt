@@ -68,20 +68,24 @@ class DockerRegistryRepositoriesTests {
      */
     @Test fun empty_list_creates_empty_repo() {
 
-        Assert.assertTrue(DockerRegistryRepositories(emptyList()).isEmpty())
-        Assert.assertTrue(DockerRegistryRepositories(listOf()).isEmpty())
-        Assert.assertTrue(DockerRegistryRepositories(mutableListOf()).isEmpty())
-        Assert.assertTrue(DockerRegistryRepositories(arrayListOf()).isEmpty())
-        Assert.assertTrue(DockerRegistryRepositories(arrayListOf()).isEmpty())
+        Assert.assertTrue(DockerRegistryRepositories(emptyList()).repositories?.isEmpty() ?: false)
+        Assert.assertTrue(DockerRegistryRepositories(listOf()).repositories?.isEmpty() ?: false)
+        Assert.assertTrue(DockerRegistryRepositories(mutableListOf()).repositories?.isEmpty() ?: false)
+        Assert.assertTrue(DockerRegistryRepositories(arrayListOf()).repositories?.isEmpty() ?: false)
+        Assert.assertTrue(DockerRegistryRepositories(arrayListOf()).repositories?.isEmpty() ?: false)
     }
 
     @Test fun elements_in_list_are_equal_to_elements_in_repo() {
 
         val ls = List(randomInt(100)) { randomDockerRepositoryName() }
+        val repos = DockerRegistryRepositories(ls).repositories
+        if (repos != null) {
 
-        val repo = DockerRegistryRepositories(ls)
-        ls.forEachIndexed { index, s ->
-            Assert.assertEquals(s, repo[index])
+            ls.forEachIndexed { index, s ->
+                Assert.assertEquals(s, repos[index])
+            }
+        } else {
+            Assert.fail()
         }
     }
 }

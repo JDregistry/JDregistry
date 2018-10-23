@@ -3,6 +3,7 @@ package jdregistry.client.payload.serialize
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.databind.ser.std.StdSerializer
+import jdregistry.client.internal.Constants
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
 
@@ -21,14 +22,13 @@ class DockerRegistryTagsSerializer @JvmOverloads constructor(clazz: Class<Docker
             writeStartObject()
 
             // Write 'name'
-            writeFieldName("name")
+            writeFieldName(Constants.NAME)
             writeString(value.name.asString())
             // Write 'tags'
-            writeFieldName("tags")
+            writeFieldName(Constants.TAGS)
             writeStartArray()
             value.tags?.forEach { gen.writeString(it.repr) }
             writeEndArray()
-
             writeEndObject()
         }
     }

@@ -3,6 +3,7 @@ package jdregistry.client.payload.serialize
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.databind.ser.std.StdSerializer
+import jdregistry.client.internal.Constants
 import jdregistry.client.payload.DockerRegistryRepositories
 
 /**
@@ -19,9 +20,9 @@ class DockerRegistryRepositoriesSerializer @JvmOverloads constructor(clazz: Clas
 
         with(gen) {
             writeStartObject()
-            writeFieldName("repositories")
+            writeFieldName(Constants.REPOSITORIES)
             writeStartArray()
-            value.forEach { writeString(it.asString()) }
+            value.repositories?.forEach { gen.writeString(it.asString()) }
             writeEndArray()
             writeEndObject()
         }

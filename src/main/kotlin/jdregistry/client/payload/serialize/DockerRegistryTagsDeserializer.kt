@@ -9,6 +9,7 @@ import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
 import jdregistry.client.data.DockerRepositoryName
 import jdregistry.client.data.DockerTag
+import jdregistry.client.internal.Constants
 import java.io.IOException
 
 /**
@@ -26,10 +27,8 @@ class DockerRegistryTagsDeserializer
 
         val node: JsonNode = jp.codec.readTree(jp)
 
-        val repo = DockerRepositoryName(node.get("name").asText())
-        val tags = node.get("tags")
-
-        // val tags = (node.get("tags") as ArrayNode).map { it.asText()}
+        val repo = DockerRepositoryName(node.get(Constants.NAME).asText()) // Name is not nullable
+        val tags = node.get(Constants.TAGS)
         return DockerRegistryTags(
                 repo,
                 if (tags.isNull) null else tags.map { DockerTag.of(it.asText()) })

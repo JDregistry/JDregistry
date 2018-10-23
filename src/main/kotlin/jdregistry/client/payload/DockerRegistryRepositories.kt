@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.internal.Constants
 import jdregistry.client.payload.serialize.DockerRegistryRepositoriesDeserializer
 import jdregistry.client.payload.serialize.DockerRegistryRepositoriesSerializer
 
@@ -18,7 +19,6 @@ import jdregistry.client.payload.serialize.DockerRegistryRepositoriesSerializer
 @JsonDeserialize(using = DockerRegistryRepositoriesDeserializer::class)
 data class DockerRegistryRepositories(
 
-    @JsonProperty("repositories")
-    val repositories: List<DockerRepositoryName> // Never observed to be null for the tested registries
-
-) : List<DockerRepositoryName> by repositories
+    @JsonProperty(Constants.REPOSITORIES)
+    val repositories: List<DockerRepositoryName>? // Must be nullable
+)
