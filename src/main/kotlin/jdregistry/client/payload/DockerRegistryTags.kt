@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import jdregistry.client.data.DockerRepositoryName
 import jdregistry.client.data.DockerTag
+import jdregistry.client.internal.Constants
 import jdregistry.client.payload.serialize.DockerRegistryTagsDeserializer
 import jdregistry.client.payload.serialize.DockerRegistryTagsSerializer
 
@@ -19,9 +20,9 @@ import jdregistry.client.payload.serialize.DockerRegistryTagsSerializer
 @JsonDeserialize(using = DockerRegistryTagsDeserializer::class)
 data class DockerRegistryTags(
 
-    @JsonProperty("name")
+    @JsonProperty(Constants.NAME)
     val name: DockerRepositoryName,
 
-    @JsonProperty("tags")
+    @JsonProperty(Constants.TAGS)
     val tags: List<DockerTag>? // Must be nullable
 )

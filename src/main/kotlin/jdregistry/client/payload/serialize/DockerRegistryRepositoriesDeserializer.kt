@@ -5,9 +5,9 @@ import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
-import com.fasterxml.jackson.databind.node.ArrayNode
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.internal.Constants
 import java.io.IOException
 
 /**
@@ -24,7 +24,10 @@ class DockerRegistryRepositoriesDeserializer
     override fun deserialize(jp: JsonParser, ctxt: DeserializationContext): DockerRegistryRepositories {
 
         val node: JsonNode = jp.codec.readTree(jp)
+
+        val repositories = node.get(Constants.REPOSITORIES)
         return DockerRegistryRepositories(
-                (node.get("repositories") as ArrayNode).map { DockerRepositoryName(it.asText()) })
+                if (repositories.isNull) null else repositories.map { DockerRepositoryName(it.asText()) }
+        )
     }
 }

@@ -48,15 +48,16 @@ class DockerRegistryGetClientNoAuthTests {
     @Test fun list_repos_1() {
 
         val repos = client.listRepositories()
-        Assert.assertTrue(repo1 in repos)
-        Assert.assertTrue(repo2 in repos)
-        Assert.assertTrue(repo3 in repos)
+        val repositories = repos.repositories
+        Assert.assertTrue(repositories != null && repo1 in repositories)
+        Assert.assertTrue(repositories != null && repo2 in repositories)
+        Assert.assertTrue(repositories != null && repo3 in repositories)
 
-        Assert.assertTrue(repo4 in repos)
-        Assert.assertTrue(repo5 in repos)
-        Assert.assertTrue(repo6 in repos)
+        Assert.assertTrue(repositories != null && repo4 in repositories)
+        Assert.assertTrue(repositories != null && repo5 in repositories)
+        Assert.assertTrue(repositories != null && repo6 in repositories)
 
-        Assert.assertTrue(repos.size > 5)
+        Assert.assertTrue(repositories != null && repositories.size > 5)
     }
 
     @Test fun list_tags_1() {
