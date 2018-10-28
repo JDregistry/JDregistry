@@ -1,11 +1,12 @@
 package jdregistry.client.api
 
-import jdregistry.client.auth.Authenticate
+import jdregistry.client.api.auth.Authenticate
 import jdregistry.client.internal.client.DefaultGetClient
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
-import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.data.RepositoryName as DockerRepositoryName
 import jdregistry.client.http.IHttpGetClient
+import jdregistry.client.api.auth.DockerRegistryAuthenticationException
 import java.net.URI
 
 /**
@@ -21,16 +22,15 @@ import java.net.URI
 interface DockerRegistryGetClient {
 
     /**
-     * The `hostname` which is used to access this registry
-     *
+     * The URI under which the Docker Registry is available
      */
     val uri: URI
 
     /**
      *  Lists all the available repositories in the Docker Registry.
-     *
      *  @return [DockerRegistryRepositories] object that contains all repositories that this client could
      *  list.
+     *  @throws DockerRegistryAuthenticationException if authentication for listing the repostiories failed
      */
     fun listRepositories(): DockerRegistryRepositories
 
@@ -40,6 +40,7 @@ interface DockerRegistryGetClient {
      * @param repository The repository as [String] for which all tags should be listed.
      *
      * @return All tags of the requested repository, represented as [DockerRegistryTags] object.
+     * @throws DockerRegistryAuthenticationException if authentication for listing the repostiories failed
      */
     fun listTags(repository: DockerRepositoryName): DockerRegistryTags
 

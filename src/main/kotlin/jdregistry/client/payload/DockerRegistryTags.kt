@@ -1,13 +1,9 @@
 package jdregistry.client.payload
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import jdregistry.client.data.DockerRepositoryName
-import jdregistry.client.data.DockerTag
+import jdregistry.client.data.RepositoryName as DockerRepositoryName
+import jdregistry.client.data.Tag as DockerTag
 import jdregistry.client.internal.Constants
-import jdregistry.client.payload.serialize.DockerRegistryTagsDeserializer
-import jdregistry.client.payload.serialize.DockerRegistryTagsSerializer
 
 /**
  * Represents the Docker Registry response when requesting the tags for a particular repository
@@ -16,13 +12,12 @@ import jdregistry.client.payload.serialize.DockerRegistryTagsSerializer
  * @since 0.0.1
  *
  */
-@JsonSerialize(using = DockerRegistryTagsSerializer::class)
-@JsonDeserialize(using = DockerRegistryTagsDeserializer::class)
 data class DockerRegistryTags(
 
     @JsonProperty(Constants.NAME)
     val name: DockerRepositoryName,
 
+    // Must be nullable, because the Docker Registry V2 was observed to return null here
     @JsonProperty(Constants.TAGS)
-    val tags: List<DockerTag>? // Must be nullable
+    val tags: List<DockerTag>?
 )

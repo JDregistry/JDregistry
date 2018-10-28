@@ -1,18 +1,18 @@
 package jdregistry.client.internal.client
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import jdregistry.client.auth.Authenticate
-import jdregistry.client.auth.DockerRegistryAuthenticationException
+import jdregistry.client.api.auth.Authenticate
+import jdregistry.client.api.auth.DockerRegistryAuthenticationException
 import jdregistry.client.api.DockerRegistryClientException
 import jdregistry.client.api.DockerRegistryGetClient
-import jdregistry.client.internal.data.BearerToken
 import jdregistry.client.internal.http.OK
 import jdregistry.client.internal.http.UNAUTHORIZED
 import jdregistry.client.internal.withQuery
 import jdregistry.client.payload.DockerRegistryRepositories
 import jdregistry.client.payload.DockerRegistryTags
-import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.data.RepositoryName as DockerRepositoryName
 import jdregistry.client.http.IHttpGetClient
 import jdregistry.client.http.IHttpResponse
 import java.net.URI
@@ -109,11 +109,10 @@ internal class DefaultGetClient(
     }
 
     override fun listRepositories(): DockerRegistryRepositories =
-
             readGetResponse(this.catalog)
 
     override fun listTags(repository: DockerRepositoryName): DockerRegistryTags =
-            readGetResponse(this.catalog.resolve("/v2/${repository.asString()}/tags/list"))
+            readGetResponse(this.catalog.resolve("/v2/${repository.repr}/tags/list"))
 
     override fun implementsV2RegistryAPI() = client.get(endpointV2).statusCode == 200
 
@@ -131,4 +130,16 @@ internal class DefaultGetClient(
                     groupValues[1] to groupValues[2]
                 }.toMap()
     }
+
+    private data class BearerToken(
+
+        @JsonProperty("token")
+        val token: String,
+
+        @JsonProperty("expires_in")
+        val expires_in: Int,
+
+        @JsonProperty("issued_at")
+        val issued_at: String
+    )
 }

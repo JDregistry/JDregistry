@@ -1,8 +1,8 @@
 package jdregistry.client.payload
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.data.RepositoryName as DockerRepositoryName
 import org.junit.Assert
 import org.junit.Test
 
@@ -10,14 +10,14 @@ class DockerRegistryTagsTests {
 
     private companion object {
 
-        val DUMMY_REPO = DockerRepositoryName("dummy")
+        val DUMMY_REPO = DockerRepositoryName.from("dummy")
 
         fun assertEqualAfterSerialization(item: DockerRegistryTags) {
 
             // Object Mapper is recreated for reading and writing such that is ensured that it does not
             // keep state
-            val serialized = ObjectMapper().writeValueAsString(item)
-            val read: DockerRegistryTags = ObjectMapper().readValue(serialized)
+            val serialized = jacksonObjectMapper().writeValueAsString(item)
+            val read: DockerRegistryTags = jacksonObjectMapper().readValue(serialized)
             Assert.assertEquals(read, item)
         }
 
