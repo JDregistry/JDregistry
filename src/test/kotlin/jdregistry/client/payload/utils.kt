@@ -1,7 +1,7 @@
 package jdregistry.client.payload
 
-import jdregistry.client.data.DockerRepositoryName
-import jdregistry.client.data.DockerTag
+import jdregistry.client.data.RepositoryName as DockerRepositoryName
+import jdregistry.client.data.Tag as DockerTag
 import java.util.Random
 import kotlin.streams.asSequence
 
@@ -26,7 +26,7 @@ internal fun randomDockerRepositoryName(): DockerRepositoryName {
         nElements--
     }
     val ls = List(nElements) { randomString(maxSLength) }
-    return DockerRepositoryName(ls.joinToString("/"))
+    return DockerRepositoryName.from(ls.joinToString("/"))
 }
 
 internal fun randomRepositories(): List<DockerRegistryRepositories> =
@@ -38,7 +38,7 @@ internal fun randomRepositories(): List<DockerRegistryRepositories> =
             DockerRegistryRepositories(List(nRepos) { randomDockerRepositoryName() })
         }
 
-private fun randomTag() = DockerTag.of(randomString(128))
+private fun randomTag() = DockerTag.from(randomString(128))
 
 internal fun randomTags(): List<DockerRegistryTags> =
 

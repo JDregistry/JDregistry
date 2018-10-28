@@ -1,4 +1,4 @@
-package jdregistry.client.auth
+package jdregistry.client.api.auth
 
 /**
  * Any exception that is related to failure with Authentication with the Docker Registry

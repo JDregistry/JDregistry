@@ -1,7 +1,7 @@
-package jdregistry.client.auth
+package jdregistry.client.api.auth
 
-import jdregistry.client.internal.auth.BasicAuth
 import java.nio.charset.Charset
+import java.util.Base64
 
 /**
  * Interface for specifying authentication methods
@@ -30,5 +30,16 @@ interface Authenticate {
          *
          */
         fun with(username: String, password: String): Authenticate = BasicAuth(username, password)
+    }
+
+    private data class BasicAuth(
+        val username: String,
+        val password: String
+    ) : Authenticate {
+
+        private fun encodeBase64(charset: Charset = Charsets.UTF_8) =
+                Base64.getEncoder().encodeToString("${username.trim()}:${password.trim()}".toByteArray(charset))
+
+        override fun authorization(charset: Charset) = "Basic ${this.encodeBase64(charset)}"
     }
 }

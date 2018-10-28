@@ -1,8 +1,8 @@
 package jdregistry.client
 
 import jdregistry.client.api.DockerRegistryGetClient
-import jdregistry.client.data.DockerRepositoryName
-import jdregistry.client.data.DockerTag
+import jdregistry.client.data.RepositoryName as DockerRepositoryName
+import jdregistry.client.data.Tag as DockerTag
 import jdregistry.client.impl.http.apache.ApacheHttpClient
 import jdregistry.test.SingleExposedPortContainer
 import org.junit.Assert
@@ -30,14 +30,14 @@ class DockerRegistryGetClientNoAuthTests {
         }
 
         // The repositories
-        val repo1 = DockerRepositoryName("testrepo0")
-        val repo2 = DockerRepositoryName("testrepo1")
-        val repo3 = DockerRepositoryName("testrepo2")
-        val repo4 = DockerRepositoryName("namespace/testrepo0")
-        val repo5 = DockerRepositoryName("namespace/testrepo1")
-        val repo6 = DockerRepositoryName("namespace/testrepo2")
+        val repo1 = DockerRepositoryName.from("testrepo0")
+        val repo2 = DockerRepositoryName.from("testrepo1")
+        val repo3 = DockerRepositoryName.from("testrepo2")
+        val repo4 = DockerRepositoryName.from("namespace/testrepo0")
+        val repo5 = DockerRepositoryName.from("namespace/testrepo1")
+        val repo6 = DockerRepositoryName.from("namespace/testrepo2")
 
-        val TAG_OTHER = DockerTag.of("other")
+        val TAG_OTHER = DockerTag.from("other")
     }
 
     @Test fun valid_v2_api() {
